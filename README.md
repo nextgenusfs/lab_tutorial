@@ -3,13 +3,14 @@
 ___
 ####Introduction to UNIX and Command line Bioinformatics####
 
-  [UNIX Tutorial (Mac/Linux)](http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html)
+* [UNIX Tutorial (Mac/Linux)](http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html)
 
-  [Python Tutorial (Win/Mac/Linux)](https://www.codecademy.com/en/tracks/python)
+* [Python Tutorial (Win/Mac/Linux)](https://www.codecademy.com/en/tracks/python)
 
-  [Perl Tutorial (Win/Mac/Linux)](http://learn-perl.org) (not as good as the Python tutorial…)
+* [Perl Tutorial (Win/Mac/Linux)](http://learn-perl.org) (not as good as the Python tutorial…)
 
-  [HomeBrew Package Manger](http://brew.sh)(this will save you so much time) (Mac)
+* [HomeBrew Package Manger](http://brew.sh) (this will save you a lot of time) (Mac)
+    * [Homebrew Science](https://github.com/Homebrew/homebrew-science)
 
 
 ___
@@ -70,7 +71,7 @@ Now in terminal you can type (this will refresh your terminal session and load i
 
 Now you can simply type the name of the script, i.e.:
 
-`my_first_python_script.py`
+`python my_first_python_script.py`
 
 ___
 
