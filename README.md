@@ -83,8 +83,8 @@ cd data   #move into the data folder
 makeblastdb -in Aflavus.proteins.fasta -dbtype prot -title Aflavus_prots -out Aflavus_prots
 ```
 
-Now let's do a protein blast search:
+Now let's do a protein blast search (search against the db we just made, output to STDOUT):
 
-`blastp -query protein.fasta -db Aflavus_prots -outfmt 6  #search protein.fasta against the db we just made, tsv output`
+`blastp -query protein.fasta -db Aflavus_prots -outfmt 6`
 
 
