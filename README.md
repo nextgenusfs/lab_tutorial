@@ -12,6 +12,8 @@ ___
 * [HomeBrew Package Manger](http://brew.sh) (this will save you a lot of time) (Mac)
     * [Homebrew Science](https://github.com/Homebrew/homebrew-science)
 
+* [Command line Bioinformatics Tools](http://elements.eaglegenomics.com)
+
 
 ___
 ####There are many ways to set up your Mac, here is how I would do it. (type or copy/paste commands into terminal)####
@@ -75,4 +77,9 @@ Now you can simply type the name of the script, i.e.:
 
 ___
 
+Okay, now let's walk through a command line BLAST example.  Assuming you have cloned this repository, there some sample data in the '/data' folder.  First let's make a custom BLAST database.
+```
+cd data   #move into the data folder
+makeblastdb -in Aflavus.proteins.fasta -dbtype prot -title Aflavus_prots -out Aflavus_prots
+```
 
