@@ -44,7 +44,7 @@ Then setup homebrew: type `brew doctor`, then type: `brew tap homebrew/science`
 
 
 ___
-GitHub is a repository for programs, scripts, etc.  It is free and public.  Lots of bioinformatics scripts reside on GitHub, and it can make it easy to install/update/share software:  
+#####GitHub is a repository for programs, scripts, etc.  It is free and public.  Lots of bioinformatics scripts reside on GitHub, and it can make it easy to install/update/share software:#####
 
 My github repo: `https://github.com/nextgenusfs`
 
@@ -73,7 +73,7 @@ Now in terminal you can type (this will refresh your terminal session and load i
 
 Now you can simply type the name of the script, i.e.:
 
-`python my_first_python_script.py`
+`my_first_python_script.py`
 
 ___
 
@@ -86,5 +86,11 @@ makeblastdb -in Aflavus.proteins.fasta -dbtype prot -title Aflavus_prots -out Af
 Now let's do a protein blast search (search against the db we just made, output to STDOUT):
 
 `blastp -query protein.fasta -db Aflavus_prots -outfmt 6`
+
+We could also do a protein blast search using the NCBI remote databases (limit to best hit), like this:
+
+`blastp -query protein.fasta -db swissprot -remote -outfmt 6 -max_target_seqs 1`
+
+
 
 
