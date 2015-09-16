@@ -100,6 +100,7 @@ Let's say you work on A. flavus, and you have the most interesting phenotype in 
 You are able to download a TSV (tab separated file) from the website containing ID's and sequence.  Now how can you reformat it into FASTA format for conducting a BLAST search?
 
 ```
+#GAWK re-orders your data how you want it - and GSED is find/replace, in this case removing * at end of line
 cat results.tsv | gawk -F"\t" '{ print ">"$1"|"$2"\n"$6;}' | \
 gsed 's/*$//g' > camptothecin.fasta
 ```
@@ -114,22 +115,33 @@ Perhaps you decide that you only want to keep sequences with percent identity gr
 
 ```
 blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1 \
--num_threads 6 | gawk -F"\t" '{ if($3 >= 50.0) print $0;}'
+-num_threads 2 | gawk -F"\t" '{ if($3 >= 50.0) print $0;}'
 ```
 
 But then you remember that you just need the sequence ID, so you utilize the UNIX command `cut` to only keep the second column and you save that to a text file.
 
 ```
 blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1 \
--num_threads 6 | gawk -F"\t" '{ if($3 >= 50.0) print $0;}' | cut -f2 > campto_hits.txt
+-num_threads 2 | gawk -F"\t" '{ if($3 >= 50.0) print $0;}' | cut -f2 > campto_hits.txt
 ```
 
-Now you would like to get the FASTA sequences from A. flavus that corespond to these IDs, you can do that with the BLAST toolkit program `blastdbcmd`.  Of course you can save this result by redirecting to a file using: `> A_flavus_campto.fasta`.
+Now you would like to get the FASTA sequences from A. flavus that corespond to these IDs, you can do that several ways, but one way is with the BLAST toolkit program `blastdbcmd`.  Of course you can save this result by redirecting to a file using: `> A_flavus_campto.fasta`.
 
 ```
 blastdbcmd -db Aflavus_prots -entry_batch campto_hits.txt > Aflavus_campto.fa
 ```
 
+Okay, so now let's say you wanted to get the coordinates of each of the genes that you found in A. flavus, you remember that [GFF3](http://www.sequenceontology.org/gff3.shtml) files contain annotation information, so you want to find each of your camptothecin genes in the GFF file.  This is a job for GREP.
 
+```
+#you can use your ID list from before as a query
+grep -f campto_hits.txt Aflavus.gff3
+
+#now you want to limit to only gene annotations (they have "gene" in the 3rd column)
+grep -f campto_hits.txt Aflavus.gff3 | grep $'\tgene\t'
+
+#or if you prefer AWK, you could do it this way (see the results are the same)
+grep -f campto_hits.txt Aflavus.gff3 | gawk -F"\t" '{if($3 == "gene") print $0;'}
+```
 
 
