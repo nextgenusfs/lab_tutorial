@@ -14,6 +14,8 @@ ___
 
 * ["Periodic Table" of Bioinformatics Tools](http://elements.eaglegenomics.com)
 
+* [Stack Overflow](www.stackoverflow.com) is an awesome resource for scripting
+
 
 ___
 ####There are many ways to set up your Mac, here is how I would do it. (type or copy/paste commands into terminal)####
