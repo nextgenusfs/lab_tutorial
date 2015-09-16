@@ -110,7 +110,8 @@ Now you can run a BLAST search against the database that you made to find best h
 
 Perhaps you decide that you only want to keep sequences with percent identity greater than 50%.  The BLAST tab format has the pident value in the 3rd column, so you can use AWK (or in this case GNU awk to filter the results).  You can pipe the results from the BLAST search directly into AWK using `"|"`.
 
-```blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1 \
+```
+blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1 \
 -num_threads 6 | gawk -F"\t" '{ if($3 >= 50.0) print $0;}'
 ```
 
