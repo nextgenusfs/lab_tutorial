@@ -106,7 +106,9 @@ gsed 's/*$//g' > camptothecin.fasta
 
 Now you can run a BLAST search against the database that you made to find best hit:
 
-`blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1`
+```
+blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1
+```
 
 Perhaps you decide that you only want to keep sequences with percent identity greater than 50%.  The BLAST tab format has the pident value in the 3rd column, so you can use AWK (or in this case GNU awk to filter the results).  You can pipe the results from the BLAST search directly into AWK using `"|"`.
 
@@ -124,7 +126,9 @@ blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1 
 
 Now you would like to get the FASTA sequences from A. flavus that corespond to these IDs, you can do that with the BLAST toolkit program `blastdbcmd`.  Of course you can save this result by redirecting to a file using: `> A_flavus_campto.fasta`.
 
-`blastdbcmd -db Aflavus_prots -entry_batch campto_hits.txt`  
+```
+blastdbcmd -db Aflavus_prots -entry_batch campto_hits.txt > Aflavus_campto.fa
+```
 
 
 
