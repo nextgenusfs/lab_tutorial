@@ -101,7 +101,8 @@ You are able to download a TSV (tab separated file) from the website containing 
 
 ```
 cat results.tsv | gawk -F"\t" '{ print ">"$1"|"$2"\n"$6;}' | \
-gsed 's/*$//g' > camptothecin.fasta```
+gsed 's/*$//g' > camptothecin.fasta
+```
 
 Now you can run a BLAST search against the database that you made to find best hit:
 
@@ -110,7 +111,8 @@ Now you can run a BLAST search against the database that you made to find best h
 Perhaps you decide that you only want to keep sequences with percent identity greater than 50%.  The BLAST tab format has the pident value in the 3rd column, so you can use AWK (or in this case GNU awk to filter the results).  You can pipe the results from the BLAST search directly into AWK using `"|"`.
 
 ```blastp -query camptothecin.fasta -db Aflavus_prots -outfmt 6 -max_target_seqs 1 \
--num_threads 6 | gawk -F"\t" '{ if($3 >= 50.0) print $0;}'```
+-num_threads 6 | gawk -F"\t" '{ if($3 >= 50.0) print $0;}'
+```
 
 But then you remember that you just need the sequence ID, so you utilize the UNIX command `cut` to only keep the second column and you save that to a text file.
 
